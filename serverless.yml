@@ -1,0 +1,21 @@
+service: lambda
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+custom:
+  serverless-offline:
+    port: 4000
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+functions:
+  test:
+    handler: src.api.test.lambda_handler
+    events:
+      - http:
+          method: get
+          path: api/test
+          cors: true
